@@ -1,4 +1,4 @@
-name: 构建docker镜像
+name: 构建docker基础镜像
 on:
   push:
     branches:
