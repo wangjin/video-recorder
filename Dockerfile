@@ -18,4 +18,5 @@ RUN apk add -U x264-libs sdl2 libxcb libbz2 xset pulseaudio-utils && \
 COPY --from=0 /home/selenoid/aports/community/ffmpeg/src/ffmpeg-4.3/ffmpeg /usr/bin/ffmpeg
 
 COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
