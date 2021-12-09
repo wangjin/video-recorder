@@ -36,7 +36,9 @@ echo -n 'gIvST5iz2S0J1+JlXC1lD3HWvg61vDTV1xbmiGxZnjB6E3psXsjWUVQS4SRrch6rygQgtpw
 export PULSE_SERVER=${BROWSER_CONTAINER_NAME}
 
 if pactl info >/dev/null 2>&1; then
+  echo record command: ffmpeg -f pulse -i default -y -f x11grab -video_size ${VIDEO_SIZE} -r ${FRAME_RATE} ${INPUT_OPTIONS} -i ${BROWSER_CONTAINER_NAME}:${DISPLAY} -codec:v ${CODEC} ${PRESET} -codec:a aac -pix_fmt yuv420p -filter:v "pad=ceil(iw/2)*2:ceil(ih/2)*2" "/data/$FILE_NAME"
   exec ffmpeg -f pulse -i default -y -f x11grab -video_size ${VIDEO_SIZE} -r ${FRAME_RATE} ${INPUT_OPTIONS} -i ${BROWSER_CONTAINER_NAME}:${DISPLAY} -codec:v ${CODEC} ${PRESET} -codec:a aac -pix_fmt yuv420p -filter:v "pad=ceil(iw/2)*2:ceil(ih/2)*2" "/data/$FILE_NAME"
 else
+  echo record command: ffmpeg -y -f x11grab -video_size ${VIDEO_SIZE} -r ${FRAME_RATE} ${INPUT_OPTIONS} -i ${BROWSER_CONTAINER_NAME}:${DISPLAY} -codec:v ${CODEC} ${PRESET} -codec:a aac  -pix_fmt yuv420p -filter:v "pad=ceil(iw/2)*2:ceil(ih/2)*2" "/data/$FILE_NAME"
   exec ffmpeg -y -f x11grab -video_size ${VIDEO_SIZE} -r ${FRAME_RATE} ${INPUT_OPTIONS} -i ${BROWSER_CONTAINER_NAME}:${DISPLAY} -codec:v ${CODEC} ${PRESET} -codec:a aac  -pix_fmt yuv420p -filter:v "pad=ceil(iw/2)*2:ceil(ih/2)*2" "/data/$FILE_NAME"
 fi
